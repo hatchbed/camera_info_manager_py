@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(camera_info_manager_py)
 
-find_package(catkin REQUIRED COMPONENTS rospy sensor_msgs)
-include_directories(include ${catkin_INCLUDE_DIRS})
+find_package(catkin REQUIRED)
 
 catkin_python_setup()
 catkin_package(CATKIN_DEPENDS sensor_msgs)
@@ -11,13 +10,23 @@ catkin_package(CATKIN_DEPENDS sensor_msgs)
 if (CATKIN_ENABLE_TESTING)
   find_package(roscpp REQUIRED)
   find_package(camera_info_manager REQUIRED)
+  find_package(sensor_msgs REQUIRED)
   add_executable(generate_camera_info
     tests/generate_camera_info.cpp
     )
-  # TODO(lucasw) Can the roscpp and camera_info_manager dependencies
-  # get added to catkin_LIBRARIES somehow?
-  target_link_libraries(generate_camera_info ${catkin_LIBRARIES}
-      ${roscpp_LIBRARIES} ${camera_info_manager_LIBRARIES})
+  target_include_directories(generate_camera_info
+    PRIVATE
+    ${catkin_INCLUDE_DIRS}
+    ${roscpp_INCLUDE_DIRS}
+    ${camera_info_manager_INCLUDE_DIRS}
+    ${sensor_msgs_INCLUDE_DIRS}
+    )
+  target_link_libraries(generate_camera_info
+    ${catkin_LIBRARIES}
+    ${roscpp_LIBRARIES}
+    ${camera_info_manager_LIBRARIES}
+    ${sensor_msgs_LIBRARIES}
+    )
 
   find_package(rostest REQUIRED)
 
