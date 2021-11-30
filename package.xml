@@ -19,21 +19,18 @@
   <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-setuptools</buildtool_depend>
   <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-setuptools</buildtool_depend>
 
+  <depend>camera_info_manager</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+
   <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-rospkg</exec_depend>
   <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-yaml</exec_depend>
   <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-rospkg</exec_depend>
   <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-yaml</exec_depend>
-  <exec_depend>camera_info_manager</exec_depend>
   <exec_depend>rospy</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
 
-  <test_depend>camera_info_manager</test_depend>
-  <test_depend>roscpp</test_depend>
   <test_depend>rostest</test_depend>
-  <test_depend>sensor_msgs</test_depend>
   <test_depend>rosunit</test_depend>
-
-  <build_export_depend>sensor_msgs</build_export_depend>
 
   <export>
     <rosdoc config="rosdoc.yaml" />
